@@ -13,7 +13,7 @@ function App() {
  <div>
   <Routes>
     <Route path='/' element={<Home/>} ></Route>
-    <Route path='/Playground/:folderID/:playgroyndID' element={<Playground/>}></Route>
+    <Route path='/Playground/:folderId/:playgroundId' element={<Playground/>}></Route>
     <Route path='*' element={<Page404/>}></Route>
   </Routes>
  </div>

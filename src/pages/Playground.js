@@ -21,7 +21,7 @@ const Playground = () => {
   const {title, language, code} = folders[folderId].playground[playgroundId]
 
   const [currCode,setCurrCode] = useState(code)
-  const [currLanguage,setcurrLanguage]= useState(language)
+  const [currLanguage,setCurrLanguage]= useState(language)
   const [currInput,setCurrInput]=useState('')
   const [currOutput,setCurrOutput]=useState('')
   const [isFullScreen, setIsFullScreen]=useState(false)
@@ -135,10 +135,41 @@ const Playground = () => {
 
 
   return (
-    <div>Playground
-
-
+    <div>
+    <Navbar isFullScreen={isFullScreen} />
+    <div className='flex flex-col lg:flex-row h-full'>
+      <div className={`${isFullScreen ? "w-full" : "w-full lg:w-3/4 "}`}>
+        <EditorContainer
+          title={title}
+          currLanguage={currLanguage}
+          setCurrLanguage={setCurrLanguage}
+          currCode={currCode}
+          setCurrCode={setCurrCode}
+          folderId={folderId}
+          playgroundId={playgroundId}
+          saveCode={saveCode}
+          runCode={runCode}
+          getFile={getFile}
+          isFullScreen={isFullScreen}
+          setIsFullScreen={setIsFullScreen}
+        />
+      </div>
+      {
+        !isFullScreen &&
+        <div className={`w-full lg:w-1/4`}>
+          <InputConsole
+            currInput={currInput}
+            setCurrInput={setCurrInput}
+            getFile={getFile}
+          />
+          <OutputConsole
+            currOutput={currOutput}
+          />
+        </div>
+      }
+      {isOpenModal.show && <Modal />}
     </div>
+  </div>
   )
 }
 

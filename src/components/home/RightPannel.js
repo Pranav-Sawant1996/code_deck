@@ -7,6 +7,8 @@ import Card from "../Card";
 import { ModalContext } from "../../context/ModalContext";
 import { PlaygroundContext } from "../../context/PlaygroundContext";
 import { useNavigate } from "react-router-dom";
+import Playground from "../../pages/Playground";
+import { Route, Routes } from 'react-router-dom';
 
 const RightPannel = () => {
   const navigate = useNavigate();
@@ -43,6 +45,7 @@ const RightPannel = () => {
           <div className="flex justify-between placeholder:mt-8 items-center">
             <div className="flex gap-4 items-center">
               <FcOpenedFolder size={"2em"} />
+              {/* {console.log(folder.title)} */}
               <h5 className="semibold"> {folder.title}</h5>
             </div>
             <div className="flex gap-4 items-center">
@@ -84,8 +87,8 @@ const RightPannel = () => {
         </div>
       ))}
       {Object.entries(folders).map(([folderId, folder]) => 
-        //   {console.log(folder['playground'])}
         <div class="">
+          {console.log(folder['playground'])}
           {/* {console.log(folder['d776b58e-4315-4f46-a971-e6f426f21043'])} */}
           {Object.entries(folder["playground"]).map(
             ([playgroundId, playground]) => (
@@ -94,8 +97,8 @@ const RightPannel = () => {
                   {/* {console.log(playgroundId)} */}
                     <div onClick={(e) => {
                         e.stopPropagation(); //stop click propagation from child to parent
-                        console.log(folderId, playgroundId)
-                        // navigate(`/playground/${folderId}/${playgroundId}`)
+                        // console.log(folderId, playgroundId)
+                        navigate(`/Playground/${folderId}/${playgroundId}`)                       
                     }}
                         className='flex items-center justify-between'>
                         <div className='flex gap-4 items-center'>
